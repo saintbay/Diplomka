@@ -1,0 +1,514 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$VGq57eNlDUtA1uCSITHmby$hRXY/gdMFRu08CQ+cIh0bBnVHfokBwgxyEnFDNyh3VU=",
+    "last_login": "2024-09-27T11:45:06.731Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@ad.ad",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-09-24T17:39:25.813Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$Mf2Rglsu0iAm8Vpp8O67Gi$yROZK0X5mIhn26JDDSknsqikWci/LfFm5sW+qYG0U/U=",
+    "last_login": "2024-09-26T13:05:45.647Z",
+    "is_superuser": false,
+    "username": "aba",
+    "first_name": "",
+    "last_name": "",
+    "email": "petusok228@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-09-25T08:56:21.614Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$7rAEPVqnFcR586LY6zOeRU$GQiAoLn1wWbEFFlIL0cSGIUl5QySBZ13a325DbGgHoI=",
+    "last_login": "2024-09-25T09:10:09.678Z",
+    "is_superuser": false,
+    "username": "aaa",
+    "first_name": "",
+    "last_name": "",
+    "email": "sir.baimyrza@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-09-25T09:10:08.551Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$nvoxozzXSL58PNgwgoK8HW$V1NyPswPDUJ6BjpVmKNlZ+gplm9wTitfwbKLI88VRew=",
+    "last_login": "2024-09-25T09:14:30.752Z",
+    "is_superuser": false,
+    "username": "111",
+    "first_name": "",
+    "last_name": "",
+    "email": "petusok228@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-09-25T09:14:29.559Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$UudQH1TZOyfg5O5as6WgPU$XRKXkP4k0rB3ED37QTgNH8FsWCSDyjmxd6r93BdCFq0=",
+    "last_login": "2024-09-25T14:23:53.280Z",
+    "is_superuser": false,
+    "username": "a",
+    "first_name": "",
+    "last_name": "",
+    "email": "abaybaymurzaev2@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-09-25T14:23:52.218Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$tcb32ghiSAoIxvBnBTUX8v$hesl9Bhbd9lKJIMcalXsd+cy9IXl3RuG2uAA3mwj+F4=",
+    "last_login": "2024-09-25T16:20:31.964Z",
+    "is_superuser": false,
+    "username": "abay",
+    "first_name": "",
+    "last_name": "",
+    "email": "abaybaymurzaev2@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-09-25T16:20:30.817Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$wN5ro8VoDazD22GGmq81Bq$DOYym1R4+JDjtxBA20NKvjcFQRT9vR1b6078R2Lqk2w=",
+    "last_login": "2025-05-26T16:24:04.276Z",
+    "is_superuser": false,
+    "username": "Abay123",
+    "first_name": "",
+    "last_name": "",
+    "email": "abaybaymurzaev2@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-26T14:34:32.436Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "k3fpk9bikbowjrcbx5giqnilpwh50d5f",
+  "fields": {
+    "session_data": ".eJxVjDkOwyAQRe9CHSGzmMVl-pzBmmEgOIlA8lJZvnuw5CJp_3vv72yEbc3jtsR5nIgNzLLb74YQ3rGcgF5QnpWHWtZ5Qn4q_KILf1SKn_vl_h1kWHKrARVBb6UI0csgnDFWodYJlVGuQyX7PmnvkZIHkiAFOTDCiQ60iS1upwHmlQ37cXwBHmo7FA:1uJapd:OP7QWZ4wvEnu3AqF_V5S305YzJ40U02Plop1D6valmM",
+    "expire_date": "2025-06-09T16:37:45.410Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "pfy8k6vvns35kh7wr7pfkzq7qcdex228",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlle_01Jzxms9XqFA8iR4qRC3B0ipYD2zcx7iYzb2vI2eMlTFWcB4vS7FaQH9x3UO_bbLGnu6zIVuSvyoENe58rPy-H-HTQc7Vvbii4CGVQ-Vh2d8ZpTCSUxgimUHFiwHH1ApXxiQwqUJ1IhIehaWLw_zWg3YQ:1stSwt:dKM1D98I5O5GmF0ZtDPeg2x44V84GNSpWAxPSQ02BCA",
+    "expire_date": "2024-10-09T14:24:59.596Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wfo1yarm0eaieq27t7gvxtvsdmfrj3dk",
+  "fields": {
+    "session_data": ".eJxVjbEOgzAMRP_FM4qSQELC2L3fgBzHKrQVtBCGCvHvBYTUcoOHu-e7GWqcUlNPIw91G6ECBdm_F5Ae3G1BvGN36wX1XRraIDZEHOkorn3k5-VgTwUNjs36XUQ0TlGO0rqoncmtZh_K4BlVHsgbVaiCnS1RSus5J6mkJZKlR6Vj4LWUcEhQzWC3856wS236QFVk8Bpa4nXE7xJSwpKBOWPqh2mtd2ZZvgH2T5k:1suABR:rXmx6hbwIHoJUyjpykoMoQyAH2IZScYejI-KU2gEt4c",
+    "expire_date": "2024-10-11T12:34:53.792Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xi2mhb0hgqxcbo8536xc67xf6had8rn0",
+  "fields": {
+    "session_data": ".eJxVjrkOgzAQRP9la2Th9QUu0-cb0Nq7DjkEEkeF-PeARJG082aeZoOO1qXv1lmm7skQwUP1myXKbxlOwC8aHqPK47BMz6TOirrorO4jy-d2df8EPc39sSbri_VBi6-xWELPoS7IjMam1jckunbSpkTWWRQMjTam5DazoxwaI4c007RA3I6HEStwEPW-fwGnID0Y:1stUlT:iJoYWUWk9atugvxPJlwi8QltOXhGV62MNb_JSTQDBko",
+    "expire_date": "2024-10-09T16:21:19.929Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "z9vri5fh5zapf43vso62qraay46c5hhg",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlle_01Jzxms9XqFA8iR4qRC3B0ipYD2zcx7iYzb2vI2eMlTFWcB4vS7FaQH9x3UO_bbLGnu6zIVuSvyoENe58rPy-H-HTQc7Vvbii4CGVQ-Vh2d8ZpTCSUxgimUHFiwHH1ApXxiQwqUJ1IhIehaWLw_zWg3YQ:1su9PF:Jag8VCPsylWTWv1VI152rPeQ0rP6b_pu3xhVCcbqZFk",
+    "expire_date": "2024-10-11T11:45:05.454Z"
+  }
+},
+{
+  "model": "app.userprofile",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "aba"
+    ],
+    "email": null,
+    "age": 11,
+    "phone": "+7(778) 209-045"
+  }
+},
+{
+  "model": "app.userprofile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "aaa"
+    ],
+    "email": null,
+    "age": 12,
+    "phone": "+7(778) 209-045"
+  }
+},
+{
+  "model": "app.userprofile",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "111"
+    ],
+    "email": null,
+    "age": null,
+    "phone": "+7(778) 209-045"
+  }
+},
+{
+  "model": "app.userprofile",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "a"
+    ],
+    "email": null,
+    "age": 11,
+    "phone": "87782090459"
+  }
+},
+{
+  "model": "app.userprofile",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "abay"
+    ],
+    "email": null,
+    "age": 16,
+    "phone": "87782090459"
+  }
+},
+{
+  "model": "app.userprofile",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "Abay123"
+    ],
+    "email": null,
+    "age": 18,
+    "phone": "+7 778 209 045"
+  }
+},
+{
+  "model": "app.productcategory",
+  "pk": 1,
+  "fields": {
+    "name": "╘ЁєъЄ√"
+  }
+},
+{
+  "model": "app.productcategory",
+  "pk": 2,
+  "fields": {
+    "name": "ьр°шэ√"
+  }
+},
+{
+  "model": "app.productcategory",
+  "pk": 3,
+  "fields": {
+    "name": "ютю∙ш"
+  }
+},
+{
+  "model": "app.product",
+  "pk": 5,
+  "fields": {
+    "created_at": "2024-09-25T15:34:15.709Z",
+    "updated_at": "2024-09-25T15:34:15.709Z",
+    "name": "weed",
+    "description": "1",
+    "price": "222.00",
+    "category": 1,
+    "img": "static/img/╤эшьюъ_¤ъЁрэр_1.png"
+  }
+},
+{
+  "model": "app.product",
+  "pk": 6,
+  "fields": {
+    "created_at": "2024-09-25T15:57:16.965Z",
+    "updated_at": "2024-09-25T15:57:16.965Z",
+    "name": "BMW M3",
+    "description": "╤єяхЁ Єрўър",
+    "price": "999999.00",
+    "category": 2,
+    "img": "static/img/bmw-3-series-sedan-m-automobiles-sd-individual-10.jpg"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2024-09-25T10:43:10.910Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "productcategory"
+    ],
+    "object_id": "1",
+    "object_repr": "ProductCategory object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2024-09-25T10:43:58.852Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "product"
+    ],
+    "object_id": "1",
+    "object_repr": "▀сыюъю (200)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2024-09-25T14:25:12.179Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "productcategory"
+    ],
+    "object_id": "2",
+    "object_repr": "ProductCategory object (2)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2024-09-25T14:25:18.129Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "productcategory"
+    ],
+    "object_id": "3",
+    "object_repr": "ProductCategory object (3)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2024-09-25T14:31:23.805Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "product"
+    ],
+    "object_id": "2",
+    "object_repr": "Mercedes-Benz S-class 2024 (10000000)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2024-09-25T14:32:35.122Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "product"
+    ],
+    "object_id": "3",
+    "object_repr": "╧юьшфюЁ (310)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2024-09-25T14:34:05.718Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "product"
+    ],
+    "object_id": "3",
+    "object_repr": "╧юьшфюЁ (310.00)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2024-09-25T14:34:05.718Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "product"
+    ],
+    "object_id": "2",
+    "object_repr": "Mercedes-Benz S-class 2024 (10000000.00)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2024-09-25T14:34:29.411Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "product"
+    ],
+    "object_id": "4",
+    "object_repr": "╧юьшфюЁ (320)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2024-09-25T15:30:15.183Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "product"
+    ],
+    "object_id": "4",
+    "object_repr": "╧юьшфюЁ (320.00)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2024-09-25T15:30:15.183Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "product"
+    ],
+    "object_id": "1",
+    "object_repr": "▀сыюъю (200.00)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2024-09-25T15:34:15.709Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "product"
+    ],
+    "object_id": "5",
+    "object_repr": "weed (222)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2024-09-25T15:57:16.982Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "app",
+      "product"
+    ],
+    "object_id": "6",
+    "object_repr": "BMW M3 (999999)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+}
+]
