@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Личный кабинет</h2>
+    <p>Добро пожаловать, {{ user.username }}!</p>
+    <p>Имя: {{ user.first_name }}</p>
+    <p>Фамилия: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ваши Заказы</h5>
+                    <p class="card-text">Просмотрите информацию о ваших предыдущих заказах.</p>
+                    <a href="{% url 'cart' %}" class="btn btn-primary">Мои Заказы</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Популярные Продукты</h5>
+                    <p class="card-text">Ознакомьтесь с нашими самыми продаваемыми товарами.</p>
+                    <a href="{% url 'catalog' %}" class="btn btn-secondary">Посмотреть</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'logout' %}" class="btn btn-danger mt-4">Выйти</a>
+</div>
+{% endblock %}
