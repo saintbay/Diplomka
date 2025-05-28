@@ -1,0 +1,83 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+
+# Environment
+.env
+.venv/
+venv/
+env/
+ENV/
+*.env
+*.env.*
+
+# VS Code
+.vscode/
+
+# Pytest
+.cache/
+.pytest_cache/
+
+# MyPy / Pylint
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pylint.d/
+
+# Coverage
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+
+# Build artifacts
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / CI
+nosetests.xml
+test_*.log
+junit-*.xml
+
+# Mac/Linux/Windows system files
+.DS_Store
+Thumbs.db
+
+# JetBrains IDEs
+.idea/
+
+# Node stuff (if using npm for frontend)
+node_modules/
+
+# Local secrets or uploads
+media/
+staticfiles/

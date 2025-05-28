@@ -1,8 +1,8 @@
 from pydoc import describe
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
-from django.conf import settings     
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -12,7 +12,8 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
-    
+
+
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
@@ -25,8 +26,7 @@ class ProductCategory(models.Model):
     name = models.CharField(max_length=50, verbose_name="Название")
 
     def __str__(self):
-        return self.name 
-
+        return self.name
 
 
 class Product(BaseModel):
@@ -35,11 +35,27 @@ class Product(BaseModel):
     price = models.DecimalField(max_digits=100, decimal_places=2, verbose_name="Цена")
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
     img = models.ImageField(null=True, blank=True, upload_to='static/img/')
-    # shop = models.ForeignKey(Shop, on_delete=models.CASCADE, related_name="products", verbose_name="Магазин")
-    
+
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
-    
+
     def __str__(self):
         return f"{self.name} ({self.price})"
+
+    def average_rating(self):
+        reviews = self.reviews.all()
+        if reviews.exists():
+            return sum(review.rating for review in reviews) / reviews.count()
+        return 0
+
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField(verbose_name="Отзыв")
+    rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)], verbose_name="Рейтинг")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата отзыва")
+
+    def __str__(self):
+        return f'Отзыв от {self.user.username} для {self.product.name}'

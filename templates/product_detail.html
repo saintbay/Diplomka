@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="container mt-4">
@@ -20,5 +21,89 @@
             </form>
         </div>
     </div>
+
+    <hr>
+    <div class="d-flex align-items-center mt-5">
+        <h4 class="mb-0">Отзывы</h4>
+        <small class="text-muted ms-2" style="opacity: 0.6;">({{ reviews|length }} отзывов)</small>
+    </div>
+    {% if reviews %}
+        {% for review in reviews %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <strong>{{ review.user.username }}</strong>
+                    <span style="font-size: 1.5rem; color: black;">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= review.rating %}
+                                ★
+                            {% else %}
+                                ☆
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                    <p class="mt-2">{{ review.text }}</p>
+                    <small class="text-muted">{{ review.created_at|date:"d.m.Y H:i" }}</small>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Пока нет отзывов.</p>
+    {% endif %}
+    
+    {% if user.is_authenticated %}
+        <hr>
+        <h5>Оставить отзыв</h5>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group mb-2">
+                <label>Рейтинг:</label><br>
+                <div class="star-rating">
+                    {% for i in "54321" %}
+                        <input type="radio" name="rating" id="rating-{{ i }}" value="{{ i }}">
+                        <label for="rating-{{ i }}"></label>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="form-group mb-2">
+                {{ form.text }}
+            </div>
+            <button type="submit" class="btn btn-success">Отправить</button>
+        </form>
+    {% else %}
+        <p class="mt-4"><a href="{% url 'login' %}">Войдите</a>, чтобы оставить отзыв.</p>
+    {% endif %}
+    
 </div>
+
+<style>
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+  font-size: 2rem;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  cursor: pointer;
+  color: white;
+  padding: 0 5px;
+  transition: color 0.2s;
+  -webkit-text-stroke: 1px black;
+}
+
+.star-rating label::before {
+  content: "★";
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: black;
+}
+</style>
+
 {% endblock %}
