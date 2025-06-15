@@ -1,23 +1,31 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import UserProfile, Product, Review
+from .models import UserProfile, Product, Review, Order
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-    age = forms.IntegerField(required=False)
-    phone = forms.CharField(max_length=15, required=False)
+    email = forms.EmailField(max_length=254, help_text='Required. Enter a valid email address.')
+    first_name = forms.CharField(max_length=30, required=True, help_text='Required.')
+    last_name = forms.CharField(max_length=30, required=True, help_text='Required.')
+    age = forms.IntegerField(required=False, help_text='Optional.')
+    phone = forms.CharField(max_length=15, required=False, help_text='Optional.')
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'age', 'phone']
+        fields = ('username', 'first_name', 'last_name', 'email', 'age', 'phone', 'password1', 'password2')
 
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
         if commit:
             user.save()
-            UserProfile.objects.create(user=user, age=self.cleaned_data['age'], phone=self.cleaned_data['phone'])
+            UserProfile.objects.create(
+                user=user,
+                age=self.cleaned_data.get('age'),
+                phone=self.cleaned_data.get('phone')
+            )
         return user
 
     def clean(self):
@@ -28,26 +36,90 @@ class SignUpForm(UserCreationForm):
             raise forms.ValidationError("Пароли не совпадают.")
         return cleaned_data
 
-class ProductFormOnOpen(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['img','name','description','price']
+        fields = ['name', 'description', 'price', 'image', 'category']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'min': '0', 'step': '0.01'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control'})
+        }
 
-class ProductFormOnSearch(forms.ModelForm):
+class ProductSearchForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['img','name','price']
+        fields = ['name', 'category', 'price']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Поиск по названию'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Максимальная цена'})
+        }
 
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['rating', 'text']
+        fields = ['text', 'rating']
         widgets = {
-            'rating': forms.RadioSelect(choices=[(i, f'{i} ★') for i in range(1, 6)],
-                                        attrs={'class': 'form-check-input'}),
-            'text': forms.Textarea(attrs={
+            'text': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'rating': forms.Select(attrs={'class': 'form-control'})
+        }
+
+class OrderForm(forms.ModelForm):
+    card_number = forms.CharField(
+        label='Номер карты',
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': '1234 5678 9012 3456',
+            'maxlength': '19'
+        })
+    )
+    card_expiry = forms.CharField(
+        label='Срок действия',
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'ММ/ГГ',
+            'maxlength': '5'
+        })
+    )
+    card_cvv = forms.CharField(
+        label='CVV',
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': '123',
+            'maxlength': '3',
+            'type': 'password'
+        })
+    )
+
+    class Meta:
+        model = Order
+        fields = ['address', 'phone']
+        widgets = {
+            'address': forms.Textarea(attrs={
                 'class': 'form-control',
                 'rows': 3,
-                'placeholder': 'Напишите свой отзыв...'
+                'placeholder': 'Введите адрес доставки'
+            }),
+            'phone': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': '+7 (XXX) XXX-XX-XX'
             })
         }
+
+    def clean_card_number(self):
+        card_number = self.cleaned_data.get('card_number')
+        return card_number
+
+    def clean_card_expiry(self):
+        card_expiry = self.cleaned_data.get('card_expiry')
+        return card_expiry
+
+    def clean_card_cvv(self):
+        card_cvv = self.cleaned_data.get('card_cvv')
+        return card_cvv

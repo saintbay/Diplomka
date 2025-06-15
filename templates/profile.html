@@ -1,35 +1,205 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2>Личный кабинет</h2>
-    <p>Добро пожаловать, {{ user.username }}!</p>
-    <p>Имя: {{ user.first_name }}</p>
-    <p>Фамилия: {{ user.last_name }}</p>
-    <p>Email: {{ user.email }}</p>
-    
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Ваши Заказы</h5>
-                    <p class="card-text">Просмотрите информацию о ваших предыдущих заказах.</p>
-                    <a href="{% url 'cart' %}" class="btn btn-primary">Мои Заказы</a>
-                </div>
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-avatar">
+            <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="profile-info">
+            <h2>{{ user.username }}</h2>
+            <p class="text-muted">Участник с {{ user.date_joined|date:"d.m.Y" }}</p>
+        </div>
+    </div>
+
+    <div class="profile-details">
+        <div class="info-card">
+            <h3>Личная информация</h3>
+            <div class="info-group">
+                <label>Имя:</label>
+                <span>{{ user.first_name|default:"Не указано" }}</span>
+            </div>
+            <div class="info-group">
+                <label>Фамилия:</label>
+                <span>{{ user.last_name|default:"Не указано" }}</span>
+            </div>
+            <div class="info-group">
+                <label>Email:</label>
+                <span>{{ user.email|default:"Не указано" }}</span>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Популярные Продукты</h5>
-                    <p class="card-text">Ознакомьтесь с нашими самыми продаваемыми товарами.</p>
-                    <a href="{% url 'catalog' %}" class="btn btn-secondary">Посмотреть</a>
+    <div class="profile-actions">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="action-content">
+                        <h4>Мои заказы</h4>
+                        <p>История ваших покупок и текущие заказы</p>
+                        <a href="{% url 'cart' %}" class="btn btn-primary">Посмотреть заказы</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="action-content">
+                        <h4>Мои товары</h4>
+                        <p>Управляйте своими товарами на продаже</p>
+                        <a href="{% url 'my_products' %}" class="btn btn-primary">Мои товары</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <a href="{% url 'logout' %}" class="btn btn-danger mt-4">Выйти</a>
+    <div class="profile-footer">
+        <a href="{% url 'logout' %}" class="btn btn-danger">
+            <i class="fas fa-sign-out-alt"></i> Выйти
+        </a>
+    </div>
 </div>
+
+<style>
+    .profile-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background-color: var(--bg-secondary);
+        border-radius: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-avatar {
+        font-size: 5rem;
+        color: var(--text-secondary);
+    }
+
+    .profile-info h2 {
+        margin: 0;
+        color: var(--text-primary);
+    }
+
+    .profile-details {
+        margin-bottom: 3rem;
+    }
+
+    .info-card {
+        background-color: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-card h3 {
+        margin-bottom: 1.5rem;
+        color: var(--text-primary);
+    }
+
+    .info-group {
+        display: flex;
+        margin-bottom: 1rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .info-group:last-child {
+        border-bottom: none;
+    }
+
+    .info-group label {
+        width: 150px;
+        color: var(--text-secondary);
+        margin: 0;
+    }
+
+    .info-group span {
+        color: var(--text-primary);
+    }
+
+    .profile-actions {
+        margin-bottom: 3rem;
+    }
+
+    .action-card {
+        background-color: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+
+    .action-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .action-icon {
+        font-size: 2rem;
+        color: var(--primary-color);
+    }
+
+    .action-content {
+        flex: 1;
+    }
+
+    .action-content h4 {
+        margin: 0 0 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .action-content p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+    }
+
+    .profile-footer {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 768px) {
+        .profile-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .info-group {
+            flex-direction: column;
+        }
+
+        .info-group label {
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-card {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .action-icon {
+            margin: 0 auto;
+        }
+    }
+</style>
 {% endblock %}
