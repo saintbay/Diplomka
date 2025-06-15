@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="home-container">
+    <div class="hero-section">
+        <h1>Welcome to our store</h1>
+        <p class="hero-text">Find the best products at great prices</p>
+        <a href="{% url 'catalog' %}" class="btn btn-primary">Go to the catalog</a>
+    </div>
+
+    <div class="features-section">
+        <div class="feature-card">
+            <i class="fas fa-shopping-cart"></i>
+            <h3>Convenient purchases</h3>
+            <p>Simple order and payment process</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-store"></i>
+            <h3>Sell products</h3>
+            <p>Become a seller and start earning</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Safe transactions</h3>
+            <p>Guarantee the safety of your purchases</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .home-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 4rem 0;
+        background: var(--bg-secondary);
+        border-radius: 1rem;
+        margin-bottom: 3rem;
+    }
+
+    .hero-text {
+        font-size: 1.25rem;
+        margin: 1rem 0 2rem;
+        color: var(--text-secondary);
+    }
+
+    .features-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+
+    .feature-card {
+        text-align: center;
+        padding: 2rem;
+        background: var(--bg-secondary);
+        border-radius: 1rem;
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-card i {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .home-container {
+            padding: 1rem;
+        }
+
+        .hero-section {
+            padding: 2rem 1rem;
+        }
+
+        .features-section {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %} 

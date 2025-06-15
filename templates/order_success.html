@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="success-icon mb-4">
+                        <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                    </div>
+                    
+                    <h2 class="card-title mb-4">Order Successfully Placed!</h2>
+                    <p class="card-text">Thank you for your order. Your order number is: <strong>#{{ order.id }}</strong></p>
+                    
+                    <div class="order-details mt-4">
+                        <h4>Order Details</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.items.all %}
+                                    <tr>
+                                        <td>{{ item.product.name }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>{{ item.price }} $</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2" class="text-right"><strong>Total:</strong></td>
+                                        <td><strong>{{ order.total_amount }} $</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <div class="delivery-info mt-4">
+                            <h4>Delivery Information</h4>
+                            <p><strong>Address:</strong> {{ order.address }}</p>
+                            <p><strong>Phone:</strong> {{ order.phone }}</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="{% url 'catalog' %}" class="btn btn-primary mr-2">
+                            <i class="fas fa-shopping-bag mr-2"></i>Continue Shopping
+                        </a>
+                        <a href="{% url 'my_orders' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-list mr-2"></i>My Orders
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        background-color: var(--bg-secondary);
+        border-color: var(--border-color);
+    }
+
+    .table {
+        color: var(--text-primary);
+    }
+
+    .table thead th {
+        border-bottom-color: var(--border-color);
+    }
+
+    .table td, .table th {
+        border-top-color: var(--border-color);
+    }
+
+    .success-icon {
+        animation: scale-in 0.5s ease-out;
+    }
+
+    @keyframes scale-in {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+</style>
+{% endblock %} 

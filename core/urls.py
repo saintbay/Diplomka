@@ -1,50 +1,43 @@
 from django.contrib import admin
-# from django.urls import path
-# from app.views import home2,logout_view,product_detail_view,profile_view,cart_view,search_view ,login_view, register_view
-# from django.conf import settings
-# from django.conf.urls.static import static
-# from django.contrib.auth import views as auth_views
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('home/', home2, name='home'),
-#     # path('', SignUp.as_view(), name='class_signup'),
-#     # path('manual_signup/', manual_signup, name='manual_signup'),
-#     path('login/', login_view, name='login'),
-#     path('signup/', register_view, name='signup'),
-#     path('cart/',cart_view,name='cart'),
-#     path('search/',search_view,name='search'),
-#     path('private/',profile_view,name='profile'),
-#     path('product/<int:product_id>/', product_detail_view, name='product_detail'),
-#     path('logout/', logout_view, name='logout')
-# ] 
-from django.urls import path
-from django.shortcuts import redirect
-from app.views import (
-    catalog_view, product_detail_view, cart_view, profile_view,
-    remove_from_cart, search_view, signup_view, login_view,
-    logout_view, home, add_to_cart
-)
+from django.urls import path, include
+from app import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', lambda request: redirect('login/')),  
-    path('admin/', admin.site.urls),
-
-    path('login/', login_view, name='login'),
-    path('logout/', logout_view, name='logout'),
-    path('signup/', signup_view, name='signup'),
-
-    path('catalog/', catalog_view, name='catalog'),
-    path('product/<int:product_id>/', product_detail_view, name='product_detail'),
-    path('search/', search_view, name='search'),
-
-    path('cart/', cart_view, name='cart'),
-    path('add-to-cart/<int:product_id>/', add_to_cart, name='add_to_cart'),
-    path('cart/remove/<int:cart_id>/', remove_from_cart, name='remove_from_cart'),
-
-    path('profile/', profile_view, name='profile'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += [
+    path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('signup/', views.signup_view, name='signup'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('catalog/', views.catalog_view, name='catalog'),
+    path('search/', views.search_view, name='search'),
+    path('cart/', views.cart_view, name='cart'),
+    path('cart/add/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
+    path('cart/remove/<int:product_id>/', views.remove_from_cart, name='remove_from_cart'),
+    path('cart/update/<int:product_id>/', views.update_cart_quantity, name='update_cart_quantity'),
+    path('product/<int:product_id>/', views.product_detail, name='product_detail'),
+    path('product/<int:product_id>/review/', views.add_review, name='add_review'),
+    path('profile/', views.profile_view, name='profile'),
+    path('seller/<int:seller_id>/', views.seller_profile, name='seller_profile'),
+    path('notifications/', views.notifications, name='notifications'),
+    path('notifications/mark-read/<int:notification_id>/', views.mark_notification_read, name='mark_notification_read'),
+    path('notifications/mark-all-read/', views.mark_all_notifications_read, name='mark_all_notifications_read'),
+    path('notifications/clear-all/', views.clear_all_notifications, name='clear_all_notifications'),
+    path('get-notification-count/', views.get_notification_count, name='get_notification_count'),
+    path('create-product/', views.create_product, name='create_product'),
+    path('my-products/', views.my_products, name='my_products'),
+    path('product/<int:product_id>/edit/', views.edit_product, name='edit_product'),
+    path('product/<int:product_id>/delete/', views.delete_product, name='delete_product'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('order-success/<int:order_id>/', views.order_success, name='order_success'),
+    path('my-orders/', views.my_orders, name='my_orders'),
+    path('order/<int:order_id>/', views.order_detail, name='order_detail'),
+    path('order/<int:order_id>/confirm/', views.confirm_order, name='confirm_order'),
+    path('support/', views.support_home, name='support_home'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -1,40 +1,156 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Sign up</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+            --input-bg: #ffffff;
+            --input-border: #ced4da;
+            --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1a1a1a;
+                --bg-secondary: #2d2d2d;
+                --text-primary: #ffffff;
+                --text-secondary: #adb5bd;
+                --border-color: #404040;
+                --input-bg: #2d2d2d;
+                --input-border: #404040;
+                --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
         .card {
             margin: 50px auto;
             max-width: 500px;
+            background-color: var(--bg-secondary);
+            border-color: var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .form-control {
+            background-color: var(--input-bg);
+            border-color: var(--input-border);
+            color: var(--text-primary);
+        }
+
+        .form-control:focus {
+            background-color: var(--input-bg);
+            border-color: #80bdff;
+            color: var(--text-primary);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .text-muted {
+            color: var(--text-secondary) !important;
+        }
+
+        label {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+            transform: translateY(-1px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-danger {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border-color: rgba(220, 53, 69, 0.2);
+        }
+
+        .login-icon {
+            font-size: 3rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
         }
     </style>
 </head>
 <body>
     <div class="container d-flex justify-content-center">
         <div class="card p-4 shadow">
-            <h3 class="text-center mb-4">Login</h3>
+            <div class="text-center mb-4">
+                <div class="login-icon">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h3>Sign in</h3>
+            </div>
+
             <form method="POST">
                 {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
                 
                 <div class="form-group">
-                    <label for="username">Имя пользователя или Email:</label>
+                    <label for="username">Username:</label>
                     <input type="text" class="form-control" id="username" name="username" required>
+                    {% if form.username.errors %}
+                        <div class="alert alert-danger mt-2">
+                            {{ form.username.errors }}
+                        </div>
+                    {% endif %}
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Пароль:</label>
+                    <label for="password">Password:</label>
                     <input type="password" class="form-control" id="password" name="password" required>
+                    {% if form.password.errors %}
+                        <div class="alert alert-danger mt-2">
+                            {{ form.password.errors }}
+                        </div>
+                    {% endif %}
                 </div>
                 
-                <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Sign in
+                </button>
             </form>
             
             <div class="text-center mt-3">
-                <p>Нет аккаунта? <a href="{% url 'signup' %}">Зарегистрироваться</a></p>
+                <p class="mb-0">No account? <a href="{% url 'signup' %}">Sign up</a></p>
             </div>
         </div>
     </div>

@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4">Checkout</h2>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <h4 class="mb-3">Delivery Information</h4>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.address.id_for_label }}">{{ form.address.label }}</label>
+                            {{ form.address }}
+                            {% if form.address.errors %}
+                                <div class="alert alert-danger mt-2">
+                                    {{ form.address.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+                            {{ form.phone }}
+                            {% if form.phone.errors %}
+                                <div class="alert alert-danger mt-2">
+                                    {{ form.phone.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <h4 class="mb-3 mt-4">Card Information</h4>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.card_number.id_for_label }}">{{ form.card_number.label }}</label>
+                            {{ form.card_number }}
+                            {% if form.card_number.errors %}
+                                <div class="alert alert-danger mt-2">
+                                    {{ form.card_number.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.card_expiry.id_for_label }}">{{ form.card_expiry.label }}</label>
+                                    {{ form.card_expiry }}
+                                    {% if form.card_expiry.errors %}
+                                        <div class="alert alert-danger mt-2">
+                                            {{ form.card_expiry.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.card_cvv.id_for_label }}">{{ form.card_cvv.label }}</label>
+                                    {{ form.card_cvv }}
+                                    {% if form.card_cvv.errors %}
+                                        <div class="alert alert-danger mt-2">
+                                            {{ form.card_cvv.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg mt-4">
+                            <i class="fas fa-lock mr-2"></i>Pay {{ cart.get_total_price }} $
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Your Order</h4>
+                    
+                    {% for item in cart %}
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h6 class="mb-0">{{ item.product.name }}</h6>
+                            <small class="text-muted">Quantity: {{ item.quantity }}</small>
+                        </div>
+                        <span>{{ item.total_price }} $</span>
+                    </div>
+                    {% endfor %}
+                    
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Total:</h5>
+                        <h5 class="mb-0">{{ cart.get_total_price }} $</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        background-color: var(--bg-secondary);
+        border-color: var(--border-color);
+    }
+    
+    .form-control {
+        background-color: var(--input-bg);
+        border-color: var(--input-border);
+        color: var(--text-primary);
+    }
+    
+    .form-control:focus {
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+    }
+    
+    label {
+        color: var(--text-primary);
+    }
+    
+    .text-muted {
+        color: var(--text-secondary) !important;
+    }
+</style>
+
+<script>
+    document.getElementById('id_card_number').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        let formattedValue = '';
+        for(let i = 0; i < value.length; i++) {
+            if(i > 0 && i % 4 === 0) {
+                formattedValue += ' ';
+            }
+            formattedValue += value[i];
+        }
+        e.target.value = formattedValue;
+    });
+
+    document.getElementById('id_card_expiry').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 2) {
+            value = value.slice(0,2) + '/' + value.slice(2);
+        }
+        e.target.value = value;
+    });
+
+    document.getElementById('id_card_cvv').addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/\D/g, '');
+    });
+</script>
+{% endblock %} 

@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import cloudinary
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -53,7 +54,7 @@ LOGGING = {
     },
     'loggers':{
         'django':{
-            'hendlers':['console_dev', 'console_prod'],
+            'handlers':['console_dev', 'console_prod'],
         },
         'django.server':{
             'handlers':['file'],
@@ -71,6 +72,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'cloudinary',
     'app'
 ]
 
@@ -113,6 +115,9 @@ DATABASES = {
         'PASSWORD': 'postgresql',
         'HOST': 'localhost',
         'PORT': '5432',
+        'OPTIONS': {
+            'client_encoding': 'UTF8',
+        },
     }
 }
 
@@ -138,17 +143,34 @@ LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Asia/Qyzylorda'
 
-USE_I18N = True
-
+USE_I18N = False
+USE_L10N = True
 USE_TZ = True
-BASE_DIR = Path(__file__).resolve().parent.parent
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MEDIA_URL = '/media/'
+LANGUAGES = [
+    ('ru', 'Русский'),
+    ('en', 'English'),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'app/locale'),
+]
+
+cloudinary.config( 
+    cloud_name = "dwkoohy0q", 
+    api_key = "141554252576825", 
+    api_secret = "-Y85UIr18SBB4uC_zQd3fdnxUg8",
+    secure = True
+)
+
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = 'home'  
+
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = '/login/'
 CART_SESSION_ID = 'cart'
 

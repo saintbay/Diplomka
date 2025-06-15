@@ -4,79 +4,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
+    <title>Registration</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+            --input-bg: #ffffff;
+            --input-border: #ced4da;
+            --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1a1a1a;
+                --bg-secondary: #2d2d2d;
+                --text-primary: #ffffff;
+                --text-secondary: #adb5bd;
+                --border-color: #404040;
+                --input-bg: #2d2d2d;
+                --input-border: #404040;
+                --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
         .card {
             margin: 50px auto;
             max-width: 500px;
+            background-color: var(--bg-secondary);
+            border-color: var(--border-color);
+            box-shadow: var(--card-shadow);
         }
+
+        .form-control {
+            background-color: var(--input-bg);
+            border-color: var(--input-border);
+            color: var(--text-primary);
+        }
+
+        .form-control:focus {
+            background-color: var(--input-bg);
+            border-color: #80bdff;
+            color: var(--text-primary);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .text-muted {
+            color: var(--text-secondary) !important;
+        }
+
+        label {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+            transform: translateY(-1px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-danger {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border-color: rgba(220, 53, 69, 0.2);
+        }
+
         .password-requirements {
             display: none;
             font-size: 0.9em;
-            color: #6c757d;
+            color: var(--text-secondary);
+            background-color: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 0.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .password-requirements ul {
+            margin-bottom: 0;
+            padding-left: 1.2rem;
         }
     </style>
 </head>
 <body>
     <div class="container d-flex justify-content-center">
         <div class="card p-4 shadow">
-            <h3 class="text-center mb-4">Регистрация</h3>
+            <h3 class="text-center mb-4">Registration</h3>
             <form method="POST">
                 {% csrf_token %}
                 {{ form.non_field_errors }}
                 
                 <div class="form-group">
-                    <label for="username">Имя пользователя:</label>
+                    <label for="username">Username:</label>
                     {{ form.username.errors }}
                     {{ form.username }}
-                    <small class="form-text text-muted">Обязательное поле. Не более 150 символов.</small>
+                    <small class="form-text text-muted">Required field. No more than 150 characters.</small>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Электронная почта:</label>
+                    <label for="first_name">Name:</label>
+                    {{ form.first_name.errors }}
+                    {{ form.first_name }}
+                    <small class="form-text text-muted">Required field.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last name:</label>
+                    {{ form.last_name.errors }}
+                    {{ form.last_name }}
+                    <small class="form-text text-muted">Required field.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
                     {{ form.email.errors }}
                     {{ form.email }}
                 </div>
 
                 <div class="form-group">
-                    <label for="age">Возраст:</label>
+                    <label for="age">Age:</label>
                     {{ form.age.errors }}
                     {{ form.age }}
+                    <small class="form-text text-muted">Optional field.</small>
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">Телефон:</label>
+                    <label for="phone">Phone:</label>
                     {{ form.phone.errors }}
                     {{ form.phone }}
+                    <small class="form-text text-muted">Optional field. Format: +7 (XXX) XXX-XX-XX</small>
                 </div>
 
                 <div class="form-group">
-                    <label for="password1">Пароль:</label>
+                    <label for="password1">Password:</label>
                     {{ form.password1.errors }}
                     {{ form.password1 }}
                     <div class="password-requirements">
                         <ul>
-                            <li>Пароль не должен быть слишком похож на другую вашу личную информацию.</li>
-                            <li>Пароль должен содержать как минимум 8 символов.</li>
-                            <li>Пароль не должен быть слишком простым и распространенным.</li>
-                            <li>Пароль не может состоять только из цифр.</li>
+                            <li>Password must not be too similar to your other personal information.</li>
+                            <li>Password must be at least 8 characters long.</li>
+                            <li>Password must not be too simple and common.</li>
+                            <li>Password cannot consist only of numbers.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="password2">Подтверждение пароля:</label>
+                    <label for="password2">Confirm password:</label>
                     {{ form.password2.errors }}
                     {{ form.password2 }}
-                    <small class="form-text text-muted">Для подтверждения введите пароль ещё раз.</small>
+                    <small class="form-text text-muted">To confirm, enter the password again.</small>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-user-plus mr-2"></i>Register
+                </button>
             </form>
 
             <div class="text-center mt-3">
-                <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+                <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
             </div>
         </div>
     </div>
@@ -88,6 +203,10 @@
 
         document.getElementById('id_password1').addEventListener('blur', function () {
             document.querySelector('.password-requirements').style.display = 'none';
+        });
+
+        document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="tel"]').forEach(function(input) {
+            input.classList.add('form-control');
         });
     </script>
 </body>
